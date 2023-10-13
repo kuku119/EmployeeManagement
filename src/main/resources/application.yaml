@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    username: employee_management_user
+    password: 123456
+    url: jdbc:mysql://localhost:3306/employee_management?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # Druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    # Druid数据源配置
+    initialSize: 5
+    maxActive: 20
+    minIdle: 5
+    maxWait: 60000
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    validationQuery: SELECT 1 FROM DUAL
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    # filters：stat监控统计、log4j日志记录（需要导入log4j依赖）、wall防御sql注入
+    filters: stat,wall,log4j
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  thymeleaf:
+    #    prefix: classpath:/templates/
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+
+# 整合MyBatis配置
+mybatis:
+  # pojo 类的存放位置
+  type-aliases-package: pkg/cty/employeemanagement/pojo
+  # mapper.xml 的存放位置
+  mapper-locations: classpath:mapper/*.xml
+  # 自动映射：数据库下划线命名<-->实体类驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true

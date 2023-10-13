@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 接口绑定 -->
+<mapper namespace="pkg.cty.employeemanagement.dao.DepartmentMapper">
+    <select id="getDepartment" resultType="department">
+        SELECT create_time, update_time, department_id, name
+        FROM department
+        WHERE department_id = #{departmentId}
+    </select>
+    <select id="getDepartmentByName" resultType="department">
+        SELECT create_time, update_time, department_id, name
+        FROM department
+        WHERE name = #{name}
+    </select>
+    <select id="listDepartments" resultType="department">
+        SELECT create_time, update_time, department_id, name
+        FROM department
+    </select>
+</mapper>

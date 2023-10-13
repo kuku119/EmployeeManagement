@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 接口绑定 -->
+
+<mapper namespace="pkg.cty.employeemanagement.dao.UserMapper">
+    <select id="getUser" resultType="user">
+        SELECT create_time, update_time, username, password
+        FROM user
+        WHERE username = #{username}
+    </select>
+</mapper>

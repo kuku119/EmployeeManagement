@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        * {
+            margin: 0 auto;
+        }
+
+        .btn-box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        .btn-box a {
+            margin: 10px;
+        }
+
+
+        .form-box {
+            margin: 5px;
+            border: 1px gray solid;
+        }
+
+        .form-box .msg {
+            color: red;
+        }
+
+
+        .tb-box {
+            display: flex;
+            justify-items: center;
+        }
+
+        .tb-box th {
+            border: gray 1px solid;
+        }
+
+        .tb-box td {
+            border: gray 1px solid;
+        }
+    </style>
+</head>
+<body>
+<div class="form-box">
+    <h4>插入：</h4>
+    <p class="msg" th:text="${insertMessage}" th:if="${not #strings.isEmpty(insertMessage)}"/>
+    <form class="insert-from" th:action="@{insertEmployee}" th:method="POST">
+        <input type="number" min="0" max="999999" placeholder="员工编号" name="insertEmployeeId" required autofocus/>
+        <input type="text" placeholder="员工名字" name="insertEmployeeName" required/>
+        <input type="email" placeholder="员工邮箱" name="insertEmployeeEmail"/>
+        <select name="insertEmployeeGender">
+            <option value="-1">--请选择性别--</option>
+            <option value="0">女</option>
+            <option value="1">男</option>
+        </select>
+        <input type="date" name="insertEmployeeBirthday" min="1970-01-01" max="2005-12-31"/>
+        <input type="text" placeholder="所属部门" name="insertEmployeeDepartmentName" required/>
+        <input type="submit"/>
+    </form>
+</div>
+<div class="form-box">
+    <h4>更新：</h4>
+    <p class="msg" th:text="${updateMessage}" th:if="${not #strings.isEmpty(updateMessage)}"/>
+    <form class="update-from" th:action="@{updateEmployee}" th:method="POST">
+        <input type="number" min="0" max="999999" placeholder="员工编号" name="updateEmployeeId" required autofocus/>
+        <input type="text" placeholder="员工名字" name="updateEmployeeName" required/>
+        <input type="email" placeholder="员工邮箱" name="updateEmployeeEmail"/>
+        <select name="updateEmployeeGender">
+            <option value="-1">--请选择性别--</option>
+            <option value="0">女</option>
+            <option value="1">男</option>
+        </select>
+        <input type="date" name="updateEmployeeBirthday" min="1970-01-01" max="2005-12-31"/>
+        <input type="text" placeholder="所属部门" name="updateEmployeeDepartmentName" required/>
+        <input type="submit"/>
+    </form>
+</div>
+<div class="form-box">
+    <h4>删除：</h4>
+    <p class="msg" th:text="${deleteMessage}" th:if="${not #strings.isEmpty(deleteMessage)}"/>
+    <form class="delete-form" th:action="@{deleteEmployee}" method="POST">
+        <input type="number" name="deleteEmployeeId" placeholder="员工编号" min="0" max="999999" required autofocus/>
+        <input type="submit"/>
+    </form>
+</div>
+<div class="btn-box">
+    <a href="/employee/listEmployees" th:method="GET">刷新</a>
+    <a style="color: lightcoral" href="/user/logout" th:method="POST">注销</a>
+</div>
+<div class="tb-box">
+    <table>
+        <tr>
+            <th>员工编号</th>
+            <th>员工名字</th>
+            <th>员工邮箱</th>
+            <th>员工性别</th>
+            <th>员工生日</th>
+            <th>所属部门</th>
+        </tr>
+        <tr th:each="employee: ${employeeList}" th:if="${not #sets.isEmpty(employeeList)}">
+            <td th:text="${employee.getEmployeeId()}"/>
+            <td th:text="${employee.getName()}"/>
+            <td th:text="${employee.getEmail()}"/>
+            <td th:text="${employee.getGender()==null?'':(employee.getGender()==1?'男':'女')}"/>
+            <td th:text="${#dates.format(employee.getBirthday(), 'yyyy-MM-dd')}"/>
+            <td th:text="${employee.getDepartment().getName()}"/>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

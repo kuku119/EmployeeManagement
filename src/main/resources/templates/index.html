@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ch" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 50%;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/user/login}" th:method="post">
+    <h1>请登录</h1>
+    <!-- 如果msg的值为空，不显示-->
+    <p style="color: red" th:text="${loginMessage}" th:if="${not #strings.isEmpty(loginMessage)}"/>
+    <input type="text" name="username" placeholder="用户名" autofocus>
+    <input type="password" name="password" placeholder="密码">
+    <button type="submit">登录</button>
+</form>
+</body>
+</html>
