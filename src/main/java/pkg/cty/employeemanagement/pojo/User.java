@@ -14,4 +14,9 @@ public class User {
     private Date updateTime;
     private String username;
     private String password;
+    private Integer permission;
+    // select: 0001 (1)
+    // insert: 0010 (2)
+    // update: 0100 (4)
+    // delete: 1000 (8)
 }

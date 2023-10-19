@@ -6,7 +6,7 @@
 
 <mapper namespace="pkg.cty.employeemanagement.dao.UserMapper">
     <select id="getUser" resultType="user">
-        SELECT create_time, update_time, username, password
+        SELECT create_time, update_time, username, password, permission
         FROM user
         WHERE username = #{username}
     </select>

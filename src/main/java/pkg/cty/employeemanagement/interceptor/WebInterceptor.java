@@ -6,11 +6,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 
 import static pkg.cty.employeemanagement.constant.CommonConstant.LOGIN_MESSAGE;
 import static pkg.cty.employeemanagement.constant.CommonConstant.LOGIN_USER;
-
-import java.util.Random;
 
 
 @Slf4j

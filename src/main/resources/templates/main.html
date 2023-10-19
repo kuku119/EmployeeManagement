@@ -95,6 +95,7 @@
 <div class="btn-box">
     <a href="/employee/listEmployees" th:method="GET">刷新</a>
     <a style="color: lightcoral" href="/user/logout" th:method="POST">注销</a>
+    <p class="msg" th:text="${selectMessage}" th:if="${not #strings.isEmpty(selectMessage)}"/>
 </div>
 <div class="tb-box">
     <table>
